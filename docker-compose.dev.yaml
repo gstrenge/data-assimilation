@@ -2,6 +2,7 @@ version: '3.1'
 
 volumes:
     grafana_data: {}
+    influx_data: {}
     
 services:
 
@@ -10,6 +11,8 @@ services:
     image: grafana/grafana
     ports:
       - 80:3000
+    links:
+      - influxdb
     volumes:
       # Makes sure data is stored in host only if 
       # postgres is still not configured in the grafana.env file
@@ -21,6 +24,18 @@ services:
     image: encresearch/mqtt-connector:latest
     restart: unless-stopped
 
+  influxdb:
+    image: influxdb
+    container_name: influxdb
+    ports:
+      - "8083:8083"
+      - "8086:8086"
+      - "8090:8090"
+    volumes:
+      # Data persistency
+      - influx_data:/var/lib/influxdb
+    restart: unless-stopped
+
   telegraf: # Sends metric reports about the host
     container_name: telegraf
     image: telegraf
@@ -29,12 +44,14 @@ services:
       HOST_SYS: /rootfs/sys
       HOST_ETC: /rootfs/etc
     hostname: dev-server
+    links:
+      - influxdb
     volumes:
-    - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
-    - /var/run/docker.sock:/var/run/docker.sock:ro
-    - /sys:/rootfs/sys:ro
-    - /proc:/rootfs/proc:ro
-    - /etc:/rootfs/etc:ro
+      - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /sys:/rootfs/sys:ro
+      - /proc:/rootfs/proc:ro
+      - /etc:/rootfs/etc:ro
 
   watchtower: # checks for changes in any of the installed images (on the latest tag)
   container_name: watchtower
