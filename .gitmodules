@@ -1,0 +1,4 @@
+[submodule "mqtt-connector"]
+	path = mqtt-connector
+	url = git@github.com:encresearch/mqtt-connector.git
+	branch = master
