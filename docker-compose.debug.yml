@@ -1,8 +1,8 @@
 version: '3.1'
 
 volumes:
-    grafana_data: {}
-    influx_data: {}
+  grafana_data: {}
+  influx_data: {}
     
 services:
 
@@ -54,8 +54,7 @@ services:
       - /etc:/rootfs/etc:ro
 
   watchtower: # checks for changes in any of the installed images (on the latest tag)
-  container_name: watchtower
-    image: v2tec/watchtower
+    image: v2tec/watchtower:latest
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock # mounts docker socket to interact with Docker's API
     command: --interval 300 # Checks for changes every 5 minutes
