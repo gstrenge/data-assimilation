@@ -13,6 +13,8 @@ services:
       - 80:3000
     links:
       - influxdb
+    env_file:
+      - ./etc/grafana.conf
     volumes:
       # Makes sure data is stored in host only if 
       # postgres is still not configured in the grafana.env file
@@ -22,6 +24,8 @@ services:
   connector:
     container_name: connector
     image: encresearch/mqtt-connector:latest
+    links:
+      - influxdb
     restart: unless-stopped
 
   influxdb:
@@ -47,11 +51,12 @@ services:
     links:
       - influxdb
     volumes:
-      - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+      - ./etc/telegraf.conf:/etc/telegraf/telegraf.conf:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /sys:/rootfs/sys:ro
       - /proc:/rootfs/proc:ro
       - /etc:/rootfs/etc:ro
+    restart: unless-stopped
 
   watchtower: # checks for changes in any of the installed images (on the latest tag)
     image: v2tec/watchtower:latest
