@@ -15,7 +15,7 @@ services:
       # postgres is still not configured in the grafana.env file
       - grafana_data:/var/lib/grafana
     env_file:
-      - ./grafana/grafana.env
+      - ./etc/grafana.conf
     restart: unless-stopped
 
   connector:
