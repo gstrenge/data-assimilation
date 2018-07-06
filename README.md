@@ -30,6 +30,8 @@ The configuration file can be found in the ```etc/``` directory. As of now, the 
 Python application that receives raw measurements data from an MQTT Broker, calculates actual values and stores them in InfluxDB. You can find the repo [here](https://github.com/encresearch/mqtt-connector).
 ### Telegraf
 Plugin-driven server agent for collecting and reporting metrics about the hosting server. Data is also stored in InfluxDB. Configuration file can also be found in the ```etc/``` directory.
+### Watchtower
+Checks changes made to the images that containers were originally started from. If a change is detected, it will automatically restart the container using the new image. For more info, visit [here]https://hub.docker.com/r/centurylink/watchtower/)
 ### Data Analysis [Work in Progress]
 Flask microservice that makes continuous queries to the InfluxDB and performs analysis and predictions based on the data. Repo can be found [here](https://github.com/encresearch/data-analysis)
 
