@@ -3,11 +3,12 @@
 ## Introduction
 > Docker-Compose and configuration files for the deployment of the data assimilation platform.
 
-## Dependencies and Setup - Install
+## Dependencies and Setup
 ### Docker
 Install [Docker](https://docs.docker.com/install/) 
 ### Docker-Compose
 Install [Docker-Compose](https://docs.docker.com/compose/install/)
+### Install and Run
 1. Clone the repo.
 ```git clone https://github.com/encresearch/data-assimlation.git```
 
