@@ -9,12 +9,10 @@ Install [Docker](https://docs.docker.com/install/)
 ### Docker-Compose
 Install [Docker-Compose](https://docs.docker.com/compose/install/)
 1. Clone the repo.
-
-...```git clone https://github.com/encresearch/data-assimlation.git```
+```git clone https://github.com/encresearch/data-assimlation.git```
 
 2. Build and run containers. Bare in mind we are still using the **dev** yml file. This file includes the creation of persistent [docker volumes](https://docs.docker.com/storage/volumes/) and contains its own database containers.
-
-...```docker-compose -f docker-compose.dev.yml up -d```
+```docker-compose -f docker-compose.dev.yml up -d```
 
 To stop and remove containers, networks and images created by up. (External volumes won't be removed)
 ```docker-compose -f docker-compose.dev.yml down```
