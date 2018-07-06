@@ -58,6 +58,13 @@ services:
       - /etc:/rootfs/etc:ro
     restart: unless-stopped
 
+  data_analysis:
+    container_name: data_analysis
+    image: encresearch/data-analysis
+    links:
+      - influxdb
+    restart: unless-stopped
+
   watchtower: # checks for changes in any of the installed images (on the latest tag)
     image: v2tec/watchtower:latest
     volumes:
