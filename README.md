@@ -1,7 +1,7 @@
 # Data Assimilation - Server [Work in Progress]
 
 ## Introduction
-> Docker-Compose and configuration files for the deployment of the data assimilation platform.
+Docker-Compose and configuration files for the deployment of the data assimilation platform. Makes use of our [MQTT Connector container](https://github.com/encresearch/mqtt-connector).
 
 ## Dependencies and Setup
 ### Docker
